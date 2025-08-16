@@ -1,0 +1,6 @@
+node_modules/
+.next/
+*.pkl
+temp.jpg
+__pycache__/
+*.pyc
