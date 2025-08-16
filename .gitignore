@@ -1,6 +1,4 @@
 node_modules/
+.env.local
+out/
 .next/
-*.pkl
-temp.jpg
-__pycache__/
-*.pyc
