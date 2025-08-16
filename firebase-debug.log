@@ -1,0 +1,43 @@
+[debug] [2025-08-16T22:43:31.080Z] ----------------------------------------------------------------------
+[debug] [2025-08-16T22:43:31.087Z] Command:       C:\Program Files\nodejs\node.exe C:\Users\EHSAN LAPTOP\AppData\Roaming\npm\node_modules\firebase-tools\lib\bin\firebase.js deploy --only hosting
+[debug] [2025-08-16T22:43:31.088Z] CLI Version:   14.12.1
+[debug] [2025-08-16T22:43:31.089Z] Platform:      win32
+[debug] [2025-08-16T22:43:31.089Z] Node Version:  v22.18.0
+[debug] [2025-08-16T22:43:31.090Z] Time:          Sat Aug 16 2025 15:43:31 GMT-0700 (Pacific Daylight Time)
+[debug] [2025-08-16T22:43:31.090Z] ----------------------------------------------------------------------
+[debug] 
+[debug] [2025-08-16T22:43:31.609Z] > command requires scopes: ["email","openid","https://www.googleapis.com/auth/cloudplatformprojects.readonly","https://www.googleapis.com/auth/firebase","https://www.googleapis.com/auth/cloud-platform"]
+[debug] [2025-08-16T22:43:31.610Z] > authorizing via signed-in user (saqibmsd437177@gmail.com)
+[debug] [2025-08-16T22:43:31.610Z] [iam] checking project smart-disease-predictor-111 for permissions ["firebase.projects.get","firebasehosting.sites.update"]
+[debug] [2025-08-16T22:43:31.613Z] Checked if tokens are valid: true, expires at: 1755387355408
+[debug] [2025-08-16T22:43:31.614Z] Checked if tokens are valid: true, expires at: 1755387355408
+[debug] [2025-08-16T22:43:31.616Z] >>> [apiv2][query] POST https://cloudresourcemanager.googleapis.com/v1/projects/smart-disease-predictor-111:testIamPermissions [none]
+[debug] [2025-08-16T22:43:31.617Z] >>> [apiv2][(partial)header] POST https://cloudresourcemanager.googleapis.com/v1/projects/smart-disease-predictor-111:testIamPermissions x-goog-quota-user=projects/smart-disease-predictor-111
+[debug] [2025-08-16T22:43:31.617Z] >>> [apiv2][body] POST https://cloudresourcemanager.googleapis.com/v1/projects/smart-disease-predictor-111:testIamPermissions {"permissions":["firebase.projects.get","firebasehosting.sites.update"]}
+[debug] [2025-08-16T22:43:33.835Z] <<< [apiv2][status] POST https://cloudresourcemanager.googleapis.com/v1/projects/smart-disease-predictor-111:testIamPermissions 200
+[debug] [2025-08-16T22:43:33.836Z] <<< [apiv2][body] POST https://cloudresourcemanager.googleapis.com/v1/projects/smart-disease-predictor-111:testIamPermissions {"permissions":["firebase.projects.get","firebasehosting.sites.update"]}
+[debug] [2025-08-16T22:43:33.839Z] Checked if tokens are valid: true, expires at: 1755387355408
+[debug] [2025-08-16T22:43:33.840Z] Checked if tokens are valid: true, expires at: 1755387355408
+[debug] [2025-08-16T22:43:33.841Z] >>> [apiv2][query] GET https://firebase.googleapis.com/v1beta1/projects/smart-disease-predictor-111 [none]
+[debug] [2025-08-16T22:43:34.904Z] <<< [apiv2][status] GET https://firebase.googleapis.com/v1beta1/projects/smart-disease-predictor-111 200
+[debug] [2025-08-16T22:43:34.905Z] <<< [apiv2][body] GET https://firebase.googleapis.com/v1beta1/projects/smart-disease-predictor-111 {"projectId":"smart-disease-predictor-111","projectNumber":"839728467370","displayName":"smart-disease-predictor","name":"projects/smart-disease-predictor-111","resources":{"hostingSite":"smart-disease-predictor-111"},"state":"ACTIVE","etag":"1_4d859637-d4cd-42bc-89b1-507aa33c4a2d"}
+[info] 
+[info] === Deploying to 'smart-disease-predictor-111'...
+[info] 
+[info] i  deploying hosting 
+[debug] [2025-08-16T22:43:34.936Z] Checked if tokens are valid: true, expires at: 1755387355408
+[debug] [2025-08-16T22:43:34.936Z] Checked if tokens are valid: true, expires at: 1755387355408
+[debug] [2025-08-16T22:43:34.937Z] >>> [apiv2][query] POST https://firebasehosting.googleapis.com/v1beta1/projects/-/sites/smart-disease-predictor-111/versions [none]
+[debug] [2025-08-16T22:43:34.937Z] >>> [apiv2][body] POST https://firebasehosting.googleapis.com/v1beta1/projects/-/sites/smart-disease-predictor-111/versions {"status":"CREATED","labels":{"deployment-tool":"cli-firebase"}}
+[debug] [2025-08-16T22:43:38.006Z] <<< [apiv2][status] POST https://firebasehosting.googleapis.com/v1beta1/projects/-/sites/smart-disease-predictor-111/versions 200
+[debug] [2025-08-16T22:43:38.007Z] <<< [apiv2][body] POST https://firebasehosting.googleapis.com/v1beta1/projects/-/sites/smart-disease-predictor-111/versions {"name":"projects/839728467370/sites/smart-disease-predictor-111/versions/f2021561192757fd","status":"CREATED","config":{},"labels":{"deployment-tool":"cli-firebase"}}
+[info] i  hosting[smart-disease-predictor-111]: beginning deploy... 
+[info] i  hosting[smart-disease-predictor-111]: found 1 files in out 
+[debug] [2025-08-16T22:43:38.064Z] [hosting] uploading with 200 concurrency
+[debug] [2025-08-16T22:43:38.067Z] [hosting] hash cache [b3V0] not populated
+[debug] [2025-08-16T22:43:38.094Z] Checked if tokens are valid: true, expires at: 1755387355408
+[debug] [2025-08-16T22:43:38.095Z] Checked if tokens are valid: true, expires at: 1755387355408
+[debug] [2025-08-16T22:43:38.100Z] [hosting] hash cache [b3V0] stored for 1 files
+[debug] [2025-08-16T22:43:38.101Z] [hosting][hash queue][FINAL] {"max":19,"min":19,"avg":19,"active":0,"complete":1,"success":1,"errored":0,"retried":0,"total":1,"elapsed":28}
+[debug] [2025-08-16T22:43:38.102Z] >>> [apiv2][query] POST https://firebasehosting.googleapis.com/v1beta1/projects/839728467370/sites/smart-disease-predictor-111/versions/f2021561192757fd:populateFiles [none]
+[debug] [2025-08-16T22:43:38.103Z] >>> [apiv2][body] POST https://firebasehosting.googleapis.com/v1beta1/projects/839728467370/sites/smart-disease-predictor-111/versions/f2021561192757fd:populateFiles {"files":{"/index.html":"4170425a946cafda09bbada838884221842e1877bd0cf294b472d9d2acb53eca"}}
