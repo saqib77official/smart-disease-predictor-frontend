@@ -84,7 +84,7 @@ export default function PredictForm() {
     try {
       const res = await axios.post(`${backendURL}/extract`, formData, {
         headers: { 'Content-Type': 'multipart/form-data' },
-        timeout: 10000,
+        timeout: 30000,
       });
       const extracted = res.data?.extracted ?? {};
       Object.entries(extracted).forEach(([rawKey, rawVal]) => {
