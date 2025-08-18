@@ -28,7 +28,9 @@ export default function PredictForm() {
     },
   });
 
-  const backendURL = process.env.NEXT_PUBLIC_BACKEND_URL || 'https://smart-disease-predictor-backend.onrender.com';
+  const backendURL =
+    process.env.NEXT_PUBLIC_BACKEND_URL ||
+    'https://smart-disease-predictor-backend.onrender.com';
 
   const onSubmit = async (data: FormData) => {
     try {
@@ -37,13 +39,15 @@ export default function PredictForm() {
       );
       const res = await axios.post(`${backendURL}/predict`, numericData, {
         headers: { 'Content-Type': 'application/json' },
-        timeout: 10000, // 10s timeout
+        timeout: 30000,
       });
       alert(`Prediction: ${res.data.prediction}`);
     } catch (error) {
       const axiosError = error as AxiosError<{ error?: string }>;
       const errorMessage =
-        axiosError.response?.data?.error || axiosError.message || 'Unknown error';
+        axiosError.response?.data?.error ||
+        axiosError.message ||
+        'Unknown error';
       console.error('Prediction error:', {
         message: errorMessage,
         status: axiosError.response?.status,
@@ -54,7 +58,8 @@ export default function PredictForm() {
     }
   };
 
-  const canonicalize = (s: string) => s.toLowerCase().replace(/[^a-z0-9]/g, '');
+  const canonicalize = (s: string) =>
+    s.toLowerCase().replace(/[^a-z0-9]/g, '');
   const FIELD_MAP: Record<string, keyof FormData> = {
     pregnancies: 'pregnancies',
     glucose: 'glucose',
@@ -94,7 +99,9 @@ export default function PredictForm() {
     } catch (error) {
       const axiosError = error as AxiosError<{ error?: string }>;
       const errorMessage =
-        axiosError.response?.data?.error || axiosError.message || 'Unknown error';
+        axiosError.response?.data?.error ||
+        axiosError.message ||
+        'Unknown error';
       console.error('Image extraction error:', {
         message: errorMessage,
         status: axiosError.response?.status,
@@ -106,45 +113,133 @@ export default function PredictForm() {
   };
 
   return (
-    <div className="container mx-auto p-4">
-      <form onSubmit={handleSubmit(onSubmit)} className="space-y-4">
-        <div>
-          <label>Pregnancies</label>
-          <input type="number" {...register('pregnancies')} className="border p-2 w-full" />
+    <div
+      style={{
+        minHeight: '100vh',
+        display: 'flex',
+        alignItems: 'center',
+        justifyContent: 'center',
+        background: 'linear-gradient(135deg, #6EE7B7, #3B82F6, #9333EA)',
+        padding: '20px',
+      }}
+    >
+      <form
+        onSubmit={handleSubmit(onSubmit)}
+        style={{
+          background: 'rgba(255, 255, 255, 0.15)',
+          backdropFilter: 'blur(12px)',
+          WebkitBackdropFilter: 'blur(12px)',
+          borderRadius: '20px',
+          padding: '30px',
+          width: '100%',
+          maxWidth: '500px',
+          boxShadow: '0 8px 32px rgba(0,0,0,0.2)',
+          color: '#fff',
+        }}
+      >
+        <h2
+          style={{
+            textAlign: 'center',
+            fontSize: '24px',
+            fontWeight: 700,
+            marginBottom: '20px',
+          }}
+        >
+          Diabetes Prediction Form
+        </h2>
+
+        {[
+          { label: 'Pregnancies', name: 'pregnancies', step: '1' },
+          { label: 'Glucose', name: 'glucose', step: '1' },
+          { label: 'Blood Pressure', name: 'bloodPressure', step: '1' },
+          { label: 'Skin Thickness', name: 'skinThickness', step: '1' },
+          { label: 'Insulin', name: 'insulin', step: '1' },
+          { label: 'BMI', name: 'bmi', step: '0.1' },
+          {
+            label: 'Diabetes Pedigree Function',
+            name: 'diabetesPedigreeFunction',
+            step: '0.01',
+          },
+          { label: 'Age', name: 'age', step: '1' },
+        ].map((field, i) => (
+          <div key={i} style={{ marginBottom: '15px' }}>
+            <label
+              style={{
+                display: 'block',
+                marginBottom: '6px',
+                fontWeight: 600,
+              }}
+            >
+              {field.label}
+            </label>
+            <input
+              type="number"
+              step={field.step}
+              {...register(field.name as keyof FormData)}
+              style={{
+                width: '100%',
+                padding: '10px',
+                borderRadius: '10px',
+                border: '1px solid rgba(255,255,255,0.3)',
+                outline: 'none',
+                background: 'rgba(255, 255, 255, 0.1)',
+                color: '#fff',
+              }}
+            />
+          </div>
+        ))}
+
+        <div style={{ marginBottom: '15px' }}>
+          <label
+            style={{
+              display: 'block',
+              marginBottom: '6px',
+              fontWeight: 600,
+            }}
+          >
+            Upload Image for OCR
+          </label>
+          <input
+            type="file"
+            accept="image/*"
+            onChange={handleImageUpload}
+            style={{
+              width: '100%',
+              padding: '10px',
+              borderRadius: '10px',
+              border: '1px solid rgba(255,255,255,0.3)',
+              background: 'rgba(255, 255, 255, 0.1)',
+              color: '#fff',
+            }}
+          />
         </div>
-        <div>
-          <label>Glucose</label>
-          <input type="number" {...register('glucose')} className="border p-2 w-full" />
-        </div>
-        <div>
-          <label>Blood Pressure</label>
-          <input type="number" {...register('bloodPressure')} className="border p-2 w-full" />
-        </div>
-        <div>
-          <label>Skin Thickness</label>
-          <input type="number" {...register('skinThickness')} className="border p-2 w-full" />
-        </div>
-        <div>
-          <label>Insulin</label>
-          <input type="number" {...register('insulin')} className="border p-2 w-full" />
-        </div>
-        <div>
-          <label>BMI</label>
-          <input type="number" step="0.1" {...register('bmi')} className="border p-2 w-full" />
-        </div>
-        <div>
-          <label>Diabetes Pedigree Function</label>
-          <input type="number" step="0.01" {...register('diabetesPedigreeFunction')} className="border p-2 w-full" />
-        </div>
-        <div>
-          <label>Age</label>
-          <input type="number" {...register('age')} className="border p-2 w-full" />
-        </div>
-        <div>
-          <label>Upload Image for OCR</label>
-          <input type="file" accept="image/*" onChange={handleImageUpload} className="border p-2 w-full" />
-        </div>
-        <button type="submit" className="bg-blue-500 text-white p-2 rounded">
+
+        <button
+          type="submit"
+          style={{
+            width: '100%',
+            background:
+              'linear-gradient(90deg, rgba(59,130,246,1) 0%, rgba(147,51,234,1) 100%)',
+            padding: '12px',
+            borderRadius: '12px',
+            border: 'none',
+            color: '#fff',
+            fontWeight: 600,
+            fontSize: '16px',
+            cursor: 'pointer',
+            transition: 'transform 0.2s ease, box-shadow 0.2s ease',
+          }}
+          onMouseOver={(e) => {
+            (e.currentTarget as HTMLButtonElement).style.transform =
+              'scale(1.05)';
+            (e.currentTarget as HTMLButtonElement).style.boxShadow =
+              '0 6px 20px rgba(0,0,0,0.3)';
+          }}
+          onMouseOut={(e) => {
+            (e.currentTarget as HTMLButtonElement).style.transform = 'scale(1)';
+            (e.currentTarget as HTMLButtonElement).style.boxShadow = 'none';
+          }}
+        >
           Predict
         </button>
       </form>
